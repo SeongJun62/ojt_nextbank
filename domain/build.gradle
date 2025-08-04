@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+}
+
+group = 'com.ojtbank'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '17'
+
+dependencies {
+    implementation project(':common')
+
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA 기능
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'// MySQL 드라이버
+
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final' // Mapstruct, 형태 변환
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}

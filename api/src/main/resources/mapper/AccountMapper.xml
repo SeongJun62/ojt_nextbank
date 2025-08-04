@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.ojtbank.domain.mapper.AccountMapper">
+    <insert id="insertAccount" parameterType="com.ojtbank.domain.model.Account">
+        INSERT INTO acc_mst (acc_no, amt, cus_no, createdAt)
+        VALUES (#{acc_no}, #{amt}, #{cus_no}, NOW());
+    </insert>
+
+    <delete id="deleteAccount" parameterType="String">
+        DELETE FROM acc_mst
+        WHERE acc_no = #{acc_no};
+    </delete>
+
+    <select id="selectAccount" parameterType = "String" resultType="com.ojtbank.domain.model.Account">
+        SELECT * FROM acc_mst
+        WHERE acc_no = #{acc_no};
+    </select>
+
+    <select id="selectAllRcps" parameterType = "String" resultType="com.ojtbank.domain.model.Rcp">
+        SELECT * FROM rcp_list
+        WHERE acc_no = #{acc_no};
+    </select>
+
+    <select id="selectAllTransfers" parameterType = "String" resultType="com.ojtbank.domain.model.Transfer">
+        SELECT * FROM trx_list
+        WHERE snd_acc_no = #{acc_no} OR rcv_acc_no = #{acc_no};
+    </select>
+</mapper>

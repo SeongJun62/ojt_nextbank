@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.ojtbank.domain.mapper.TransferMapper">
+    <insert id="insertTransfer" parameterType="com.ojtbank.domain.model.Transfer">
+        INSERT INTO trx_list(trx_seq, snd_acc_no, rcv_acc_no, trx_datetime, amt, trx_type)
+        VALUES (#{trx_seq}, #{snd_acc_no}, #{rcv_acc_no}, NOW(), #{amt}, "transfer");
+    </insert>
+
+    <update id="updateSndAccount" parameterType="com.ojtbank.domain.model.Transfer">
+        UPDATE acc_mst
+        SET amt = amt-#{amt}
+        WHERE acc_no = #{snd_acc_no};
+    </update>
+
+    <update id="updateRcvAccount" parameterType="com.ojtbank.domain.model.Transfer">
+        UPDATE acc_mst
+        SET amt = amt+#{amt}
+        WHERE acc_no = #{rcv_acc_no};
+    </update>
+
+</mapper>

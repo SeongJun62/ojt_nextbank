@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojtbank.domain.mapper.CustomerMapper">
+    <insert id="insertCustomer" parameterType="com.ojtbank.domain.model.Customer">
+        INSERT INTO cus_mst (cus_no, cus_nm, cus_id, cus_pw)
+        VALUES (#{cus_no}, #{cus_nm}, #{cus_id}, #{cus_pw});
+    </insert>
+
+    <delete id="deleteCustomer" parameterType="String">
+        DELETE FROM cus_mst
+        WHERE cus_no= #{cus_no};
+    </delete>
+
+    <select id="selectCustomerByNo" parameterType = "String" resultType="com.ojtbank.domain.model.Customer">
+        SELECT * FROM cus_mst
+        WHERE cus_no = #{cus_no};
+    </select>
+
+    <select id="selectAllAccountByNo" parameterType = "String" resultType="com.ojtbank.domain.model.Account">
+        SELECT * FROM acc_mst
+        WHERE cus_no = #{cus_no};
+    </select>
+</mapper>

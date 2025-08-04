@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.ojtbank'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '17'
+
+dependencies {
+    // 여기에 공통적으로 필요한 의존성이 있다면 추가
+    compileOnly 'org.projectlombok:lombok:1.18.30' // 최신 버전 확인 권장
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+}

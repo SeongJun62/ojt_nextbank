@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ojt_nextbank.iml" filepath="$PROJECT_DIR$/.idea/ojt_nextbank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/ojt_nextbank.api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api/ojt_nextbank.api.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/ojt_nextbank.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/ojt_nextbank.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/ojt_nextbank.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/ojt_nextbank.domain.main.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.ojtbank.domain.mapper.DepositMapper">
+    <insert id="insertDeposit" parameterType="com.ojtbank.domain.model.Rcp">
+        INSERT INTO rcp_list(trx_seq, acc_no, trx_datetime, amt, trx_type)
+        values (#{trx_seq}, #{acc_no}, NOW(), #{amt}, "deposit");
+    </insert>
+
+    <update id="updateAccount" parameterType="com.ojtbank.domain.model.Rcp">
+        UPDATE acc_mst
+        SET amt = amt+#{amt}
+        WHERE acc_no = #{acc_no};
+    </update>
+</mapper>
