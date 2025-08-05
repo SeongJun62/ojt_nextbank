@@ -4,13 +4,14 @@ import com.ojtbank.common.dto.DepositDto;
 import com.ojtbank.domain.model.Rcp;
 import com.ojtbank.domain.repository.DepositRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
 @Repository
-@Primary
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class DepositJpaDaoImpl implements DepositDao{
 
     private final DepositRepository depositRepository;

@@ -4,6 +4,7 @@ import com.ojtbank.common.dto.PaymentDto;
 import com.ojtbank.domain.model.Rcp;
 import com.ojtbank.domain.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 
 
 @Repository
-@Primary
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class PaymentJpaDaoImpl implements PaymentDao{
 
     private final PaymentRepository paymentRepository;

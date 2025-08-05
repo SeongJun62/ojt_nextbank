@@ -5,9 +5,11 @@ import com.ojtbank.common.dto.CustomerDto;
 import com.ojtbank.domain.dao.CustomerDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@Transactional
 public class CustomerServiceImpl implements CustomerService{
 
     private final CustomerDao customerDao;

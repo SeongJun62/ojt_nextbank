@@ -7,12 +7,14 @@ import com.ojtbank.domain.model.Account;
 import com.ojtbank.domain.model.Rcp;
 import com.ojtbank.domain.model.Transfer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "mybatis")
 public class AccountMyBatisDaoImpl implements AccountDao{
 
     private final AccountMapper accountMapper;
@@ -36,7 +38,7 @@ public class AccountMyBatisDaoImpl implements AccountDao{
     @Override
     public AccountDto getAccountByNo(String accountNo) {
         Account account = accountMapper.selectAccount(accountNo);
-        System.out.println("조회된 계좌는 다음과 같습니다 : " + account);
+        System.out.println("Mybatis로 찾은 계좌는 다음과 같습니다. : " + account);
         return new AccountDto(account.getAcc_no(), account.getAmt(), account.getCus_no(), account.getCreatedAt());
     }
 

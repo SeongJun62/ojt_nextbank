@@ -7,12 +7,14 @@ import com.ojtbank.domain.mapper.CustomerMapper;
 import com.ojtbank.domain.model.Account;
 import com.ojtbank.domain.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "mybatis")
 public class CustomerMyBatisDaoImpl implements CustomerDao{
 
 

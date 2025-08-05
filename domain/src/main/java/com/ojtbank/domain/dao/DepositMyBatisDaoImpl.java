@@ -4,9 +4,11 @@ import com.ojtbank.common.dto.DepositDto;
 import com.ojtbank.domain.mapper.DepositMapper;
 import com.ojtbank.domain.model.Rcp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "mybatis")
 public class DepositMyBatisDaoImpl implements DepositDao{
 
     private final DepositMapper depositMapper;

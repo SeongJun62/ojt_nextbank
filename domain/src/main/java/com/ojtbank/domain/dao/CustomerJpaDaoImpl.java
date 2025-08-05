@@ -8,6 +8,7 @@ import com.ojtbank.domain.model.Customer;
 import com.ojtbank.domain.repository.AccountRepository;
 import com.ojtbank.domain.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-@Primary
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class CustomerJpaDaoImpl implements CustomerDao{
 
     private final CustomerRepository customerRepository;

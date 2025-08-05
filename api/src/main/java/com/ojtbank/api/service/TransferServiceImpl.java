@@ -2,11 +2,13 @@ package com.ojtbank.api.service;
 
 import com.ojtbank.common.dto.TransferDto;
 import com.ojtbank.domain.dao.TransferDao;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Transactional
 public class TransferServiceImpl implements TransferService{
 
     private final TransferDao transferDao;

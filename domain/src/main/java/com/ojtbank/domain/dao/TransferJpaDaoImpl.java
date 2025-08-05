@@ -4,13 +4,14 @@ import com.ojtbank.common.dto.TransferDto;
 import com.ojtbank.domain.model.Transfer;
 import com.ojtbank.domain.repository.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
 @Repository
-@Primary
+@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class TransferJpaDaoImpl implements TransferDao{
 
     private final TransferRepository transferRepository;
