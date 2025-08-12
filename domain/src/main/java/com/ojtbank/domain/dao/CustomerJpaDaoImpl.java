@@ -15,12 +15,11 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class CustomerJpaDaoImpl implements CustomerDao{
 
-    private final CustomerRepository customerRepository;
+
     private final AccountRepository accountRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
     public CustomerJpaDaoImpl(CustomerRepository customerRepository, AccountRepository accountRepository){

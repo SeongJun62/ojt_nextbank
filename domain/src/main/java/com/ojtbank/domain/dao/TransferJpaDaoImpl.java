@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Repository
-@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class TransferJpaDaoImpl implements TransferDao{
 
     private final TransferRepository transferRepository;

@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-@ConditionalOnProperty(name = "dao.impl-type", havingValue = "mybatis")
 public class AccountMyBatisDaoImpl implements AccountDao{
 
     private final AccountMapper accountMapper;

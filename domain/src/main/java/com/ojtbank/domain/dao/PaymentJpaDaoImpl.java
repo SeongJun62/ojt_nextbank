@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 
 
-@Repository
-@ConditionalOnProperty(name = "dao.impl-type", havingValue = "jpa")
 public class PaymentJpaDaoImpl implements PaymentDao{
 
     private final PaymentRepository paymentRepository;
