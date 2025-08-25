@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ojtbank.domain.mapper.CustomerMapper">
     <insert id="insertCustomer" parameterType="com.ojtbank.domain.model.Customer">
-        INSERT INTO cus_mst (cus_no, cus_nm, cus_id, cus_pw)
-        VALUES (#{cus_no}, #{cus_nm}, #{cus_id}, #{cus_pw});
+        INSERT INTO cus_mst (cus_no, cus_nm, cus_id, cus_pw, opr_id, opr_trm_id, mng_id, org_id, create_time, update_time)
+        VALUES (#{cus_no}, #{cus_nm}, #{cus_id}, #{cus_pw}, #{opr_id}, #{opr_trm_id}, #{mng_id}, #{org_id}, #{create_time}, #{update_time});
     </insert>
 
     <delete id="deleteCustomer" parameterType="String">

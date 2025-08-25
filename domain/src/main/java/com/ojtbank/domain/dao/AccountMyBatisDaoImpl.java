@@ -1,6 +1,7 @@
 package com.ojtbank.domain.dao;
 
 import ch.qos.logback.core.CoreConstants;
+import com.ojtbank.common.audit.AuditContext;
 import com.ojtbank.common.dto.*;
 import com.ojtbank.domain.mapper.AccountMapper;
 import com.ojtbank.domain.model.Account;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,8 @@ public class AccountMyBatisDaoImpl implements AccountDao{
 
     @Override
     public void registerAccount(AccountDto accountDto) {
-        Account account = new Account(accountDto.getAcc_no(), accountDto.getAmt(), accountDto.getCus_no(), accountDto.getCreatedAt());
+        AuditDto auditDto = AuditContext.getAudioDto();
+        Account account = new Account(auditDto.getOpr_id(), auditDto.getOpr_trm_id(), auditDto.getMng_id(), auditDto.getOrg_id(), LocalDateTime.now(), LocalDateTime.now(), accountDto.getAcc_no(), accountDto.getAmt(), accountDto.getCus_no(), accountDto.getCreatedAt());
         accountMapper.insertAccount(account);
     }
 

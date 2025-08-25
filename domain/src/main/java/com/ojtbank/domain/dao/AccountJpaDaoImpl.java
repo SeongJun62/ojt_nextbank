@@ -1,5 +1,6 @@
 package com.ojtbank.domain.dao;
 
+import com.ojtbank.common.audit.AuditContext;
 import com.ojtbank.common.dto.*;
 import com.ojtbank.domain.model.Account;
 import com.ojtbank.domain.model.Rcp;
@@ -35,7 +36,9 @@ public class AccountJpaDaoImpl implements AccountDao{
 
     @Override
     public void registerAccount(AccountDto accountDto) {
-        Account account = new Account(accountDto.getAcc_no(), accountDto.getAmt(), accountDto.getCus_no(), LocalDateTime.now());
+        AuditDto auditDto = AuditContext.getAudioDto();
+        Account account = new Account(auditDto.getOpr_id(), auditDto.getOpr_trm_id(), auditDto.getMng_id(), auditDto.getOrg_id(), LocalDateTime.now(), LocalDateTime.now(), accountDto.getAcc_no(), accountDto.getAmt(), accountDto.getCus_no(), LocalDateTime.now());
+        System.out.println("Account는 다음과 같습니다." + account + " " + account.getOrg_id());
         accountRepository.save(account);
     }
 
@@ -47,7 +50,7 @@ public class AccountJpaDaoImpl implements AccountDao{
     @Override
     public AccountDto getAccountByNo(String accountNo) {
         Account account = accountRepository.findById(accountNo).get();
-        System.out.println("JPA로 찾은 계좌는 다음과 같습니다. : " + account);
+        System.out.println("JPA로 찾은 계좌는 다음과 같습니다. : " + account + " " + account.getOrg_id());
         return new AccountDto(account.getAcc_no(), account.getAmt(), account.getCus_no(), account.getCreatedAt());
     }
 

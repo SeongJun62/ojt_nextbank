@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.ojtbank.domain.mapper.PaymentMapper">
     <insert id = "insertPayment" parameterType="com.ojtbank.domain.model.Rcp">
-        INSERT INTO rcp_list(trx_seq, acc_no, trx_datetime, amt, trx_type)
-        VALUES (#{trx_seq}, #{acc_no}, NOW(), #{amt}, "payment");
+        INSERT INTO rcp_list(trx_seq, acc_no, trx_datetime, amt, trx_type, opr_id, opr_trm_id, mng_id, org_id, create_time, update_time)
+        VALUES (#{trx_seq}, #{acc_no}, NOW(), #{amt}, "payment", #{opr_id}, #{opr_trm_id}, #{mng_id}, #{org_id}, #{create_time}, #{update_time});
     </insert>
 
     <update id="updateAccount" parameterType="com.ojtbank.domain.model.Rcp">
         UPDATE acc_mst
-        SET amt = amt-#{amt}
+        SET amt = amt-#{amt}, update_time = #{update_time}
         WHERE acc_no = #{acc_no};
     </update>
 </mapper>

@@ -1,5 +1,7 @@
 package com.ojtbank.domain.dao;
 
+import com.ojtbank.common.audit.AuditContext;
+import com.ojtbank.common.dto.AuditDto;
 import com.ojtbank.common.dto.PaymentDto;
 import com.ojtbank.domain.model.Rcp;
 import com.ojtbank.domain.repository.PaymentRepository;
@@ -22,12 +24,13 @@ public class PaymentJpaDaoImpl implements PaymentDao{
 
     @Override
     public void payment(PaymentDto paymentDto) {
-        Rcp rcp = new Rcp(paymentDto.getTrx_seq(), paymentDto.getAcc_no(), LocalDateTime.now(), paymentDto.getAmt(), "payment");
+        AuditDto auditDto = AuditContext.getAudioDto();
+        Rcp rcp = new Rcp(auditDto.getOpr_id(), auditDto.getOpr_trm_id(), auditDto.getMng_id(), auditDto.getOrg_id(), LocalDateTime.now(), LocalDateTime.now(), paymentDto.getTrx_seq(), paymentDto.getAcc_no(), LocalDateTime.now(), paymentDto.getAmt(), "payment");
         paymentRepository.save(rcp);
     }
 
     @Override
     public void updateAccount(PaymentDto paymentDto) {
-        paymentRepository.updateAccount(paymentDto.getAmt(), paymentDto.getAcc_no());
+        paymentRepository.updateAccount(paymentDto.getAmt(), paymentDto.getAcc_no(), LocalDateTime.now());
     }
 }

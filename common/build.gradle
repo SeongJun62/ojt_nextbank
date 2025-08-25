@@ -11,4 +11,19 @@ dependencies {
     // 여기에 공통적으로 필요한 의존성이 있다면 추가
     compileOnly 'org.projectlombok:lombok:1.18.30' // 최신 버전 확인 권장
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.10.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.1'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1'
+
+    implementation platform("org.springframework.boot:spring-boot-dependencies:3.2.4")
+
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure:3.2.4'
+    compileOnly 'org.springframework:spring-web'        // org.springframework.web.filter.*
+    compileOnly 'org.springframework:spring-webmvc'     // org.springframework.web.servlet.*
+    compileOnly "jakarta.servlet:jakarta.servlet-api"
+    compileOnly "org.springframework.boot:spring-boot-autoconfigure"
+    compileOnly "org.springframework.boot:spring-boot"
+
 }

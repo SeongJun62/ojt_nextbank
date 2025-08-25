@@ -1,2 +1,9 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'ojt_nextbank'
 include 'api', 'domain', 'common'

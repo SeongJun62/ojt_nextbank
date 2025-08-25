@@ -1,25 +1,32 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
+plugins {
+    id 'io.spring.dependency-management' version '1.1.4' apply false
+    // (선택) 부트 플러그인도 여기서 선언해두면 편합니다.
+    id 'org.springframework.boot' version '3.2.4' apply false
 }
 
 allprojects {
-    repositories {
-        mavenCentral()
-    }
+    repositories { mavenCentral() }
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
 
     group = 'com.ojtbank'
     version = '0.0.1-SNAPSHOT'
 
-    sourceCompatibility = '17'
-    targetCompatibility = '17'
+    java {
+        toolchain { languageVersion = JavaLanguageVersion.of(17) }
+    }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
+    }
+
+    // 🔽 BOM으로 버전 일원화
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:3.2.4"
+        }
     }
 }

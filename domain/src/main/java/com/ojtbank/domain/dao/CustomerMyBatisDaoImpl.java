@@ -1,6 +1,8 @@
 package com.ojtbank.domain.dao;
 
+import com.ojtbank.common.audit.AuditContext;
 import com.ojtbank.common.dto.AccountDto;
+import com.ojtbank.common.dto.AuditDto;
 import com.ojtbank.common.dto.CustomerAccountDto;
 import com.ojtbank.common.dto.CustomerDto;
 import com.ojtbank.domain.mapper.CustomerMapper;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,8 @@ public class CustomerMyBatisDaoImpl implements CustomerDao{
 
     @Override
     public void registerCustomer(CustomerDto customerDto) {
-        Customer customer = new Customer(customerDto.getCus_no(), customerDto.getCus_nm(), customerDto.getCus_id(), customerDto.getCus_pw());
+        AuditDto auditDto = AuditContext.getAudioDto();
+        Customer customer = new Customer(auditDto.getOpr_id(), auditDto.getOpr_trm_id(), auditDto.getMng_id(), auditDto.getOrg_id(), LocalDateTime.now(), LocalDateTime.now(), customerDto.getCus_no(), customerDto.getCus_nm(), customerDto.getCus_id(), customerDto.getCus_pw());
         customerMapper.insertCustomer(customer);
     }
 

@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
+
 public interface PaymentRepository extends JpaRepository<Rcp, String> {
 
     @Modifying
     @Transactional
-    @Query(value= "UPDATE acc_mst SET amt = amt - :amt WHERE acc_no = :acc_no", nativeQuery = true)
-    void updateAccount(@Param("amt") long amt, @Param("acc_no") String acc_no);
+    @Query(value= "UPDATE acc_mst SET amt = amt - :amt, update_time = :update_time WHERE acc_no = :acc_no", nativeQuery = true)
+    void updateAccount(@Param("amt") long amt, @Param("acc_no") String acc_no, @Param("update_time") LocalDateTime update_time);
 }
